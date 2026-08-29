@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SECRETS_DIR="${APP_DATA_DIR}/data/mosquitto/secrets"
+PASSWD_FILE="${SECRETS_DIR}/passwd"
+MQTT_PASSWORD_FILE="${APP_DATA_DIR}/data/mqtt_password"
+
+mkdir -p "${SECRETS_DIR}"
+
+if [[ ! -f "${PASSWD_FILE}" ]]; then
+  MQTT_PASSWORD="$(cat "${MQTT_PASSWORD_FILE}")"
+
+  # Passwort-Datei per Wegwerf-Mosquitto-Container erzeugen (mosquitto_passwd
+  # ist nur im Mosquitto-Image enthalten, nicht auf dem Host verfuegbar).
+  docker run --rm \
+    -v "${SECRETS_DIR}:/mosquitto/secrets" \
+    eclipse-mosquitto:2.0.18 \
+    sh -c "mosquitto_passwd -b -c /mosquitto/secrets/passwd vorhang_backend '${MQTT_PASSWORD}'"
+
+  docker run --rm \
+    -v "${SECRETS_DIR}:/mosquitto/secrets" \
+    eclipse-mosquitto:2.0.18 \
+    sh -c "mosquitto_passwd -b /mosquitto/secrets/passwd esp32_schlafzimmer '${MQTT_PASSWORD}'"
+fi

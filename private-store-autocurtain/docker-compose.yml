@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: $APP_AUTOCURTAIN_BACKEND_IP
+      APP_PORT: 8000
+      PROXY_AUTH_ADD: "false"
+
+  backend:
+    image: ghcr.io/zypcon/auto-curtain-backend:1.0.0
+    container_name: private-store-autocurtain_backend_1
+    restart: on-failure
+    depends_on:
+      - mosquitto
+    networks:
+      default:
+        ipv4_address: $APP_AUTOCURTAIN_BACKEND_IP
+    volumes:
+      - ${APP_DATA_DIR}/data/backend:/app/data
+    environment:
+      - MQTT_BROKER_HOST=private-store-autocurtain_mosquitto_1
+      - MQTT_BROKER_PORT=1883
+      - MQTT_USERNAME=$APP_AUTOCURTAIN_MQTT_USERNAME
+      - MQTT_PASSWORD=$APP_AUTOCURTAIN_MQTT_PASSWORD
+      - DATABASE_PATH=/app/data/vorhang.db
+
+  mosquitto:
+    image: ghcr.io/zypcon/auto-curtain-mosquitto:1.0.0
+    container_name: private-store-autocurtain_mosquitto_1
+    restart: on-failure
+    networks:
+      default:
+        ipv4_address: $APP_AUTOCURTAIN_MOSQUITTO_IP
+    ports:
+      - "1883:1883"
+    volumes:
+      - ${APP_DATA_DIR}/data/mosquitto/secrets:/mosquitto/secrets
+      - ${APP_DATA_DIR}/data/mosquitto/data:/mosquitto/data

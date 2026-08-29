@@ -1,0 +1,21 @@
+manifestVersion: 1.1
+id: "private-store-autocurtain"
+category: "automation"
+name: "AutoCurtain"
+version: "1.0.0"
+tagline: "Automatischer Vorhang-Öffner für dein Schlafzimmer"
+description: >-
+  Steuert einen ESP32-basierten Vorhang-Öffner-Mechanismus über MQTT.
+  Ermöglicht manuelles Öffnen sowie zeitgesteuerte Weckzeiten mit
+  Wochentag/Wochenende-Unterscheidung.
+developer: "Flo"
+website: "https://github.com/zypcon/auto-curtain"
+dependencies: []
+repo: "https://github.com/zypcon/private-umbrel-app-store"
+support: "https://github.com/zypcon/auto-curtain/issues"
+port: 8000
+gallery:
+  - "1.jpg"
+  - "2.jpg"
+releaseNotes: >-
+  Erste Version als native Umbrel-App (Migration von Portainer-DinD-Stack).
