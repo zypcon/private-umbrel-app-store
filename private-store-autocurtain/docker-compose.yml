@@ -20,6 +20,7 @@ services:
       - MQTT_USERNAME=$APP_AUTOCURTAIN_MQTT_USERNAME
       - MQTT_PASSWORD=$APP_AUTOCURTAIN_MQTT_PASSWORD
       - DATABASE_PATH=/app/data/vorhang.db
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 1
 
   mosquitto:
     image: ghcr.io/zypcon/auto-curtain-mosquitto:latest
