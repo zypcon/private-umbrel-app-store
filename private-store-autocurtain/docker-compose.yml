@@ -1,9 +1,8 @@
 version: "3.8"
-
 services:
   app_proxy:
     environment:
-      APP_HOST: $APP_AUTOCURTAIN_BACKEND_IP
+      APP_HOST: backend
       APP_PORT: 8000
       PROXY_AUTH_ADD: "false"
 
@@ -13,13 +12,10 @@ services:
     restart: on-failure
     depends_on:
       - mosquitto
-    networks:
-      default:
-        ipv4_address: $APP_AUTOCURTAIN_BACKEND_IP
     volumes:
       - ${APP_DATA_DIR}/data/backend:/app/data
     environment:
-      - MQTT_BROKER_HOST=private-store-autocurtain_mosquitto_1
+      - MQTT_BROKER_HOST=mosquitto
       - MQTT_BROKER_PORT=1883
       - MQTT_USERNAME=$APP_AUTOCURTAIN_MQTT_USERNAME
       - MQTT_PASSWORD=$APP_AUTOCURTAIN_MQTT_PASSWORD
@@ -29,9 +25,6 @@ services:
     image: ghcr.io/zypcon/auto-curtain-mosquitto:latest
     container_name: private-store-autocurtain_mosquitto_1
     restart: on-failure
-    networks:
-      default:
-        ipv4_address: $APP_AUTOCURTAIN_MOSQUITTO_IP
     ports:
       - "1883:1883"
     volumes:
