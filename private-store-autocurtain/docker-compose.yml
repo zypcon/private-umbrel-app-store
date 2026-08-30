@@ -8,7 +8,7 @@ services:
       PROXY_AUTH_ADD: "false"
 
   backend:
-    image: ghcr.io/zypcon/auto-curtain-backend:1.0.0
+    image: ghcr.io/zypcon/auto-curtain-backend:latest
     container_name: private-store-autocurtain_backend_1
     restart: on-failure
     depends_on:
@@ -26,7 +26,7 @@ services:
       - DATABASE_PATH=/app/data/vorhang.db
 
   mosquitto:
-    image: ghcr.io/zypcon/auto-curtain-mosquitto:1.0.0
+    image: ghcr.io/zypcon/auto-curtain-mosquitto:latest
     container_name: private-store-autocurtain_mosquitto_1
     restart: on-failure
     networks:
