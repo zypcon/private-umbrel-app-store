@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# Erzeugt (einmalig, persistent) ein zufälliges MQTT-Passwort für das Backend,
-# falls noch keines existiert. Wird in $APP_DATA_DIR/data/mqtt_password abgelegt,
-# damit es Neustarts und Updates übersteht.
+# Fallback: Falls APP_DATA_DIR nicht von umbreld gesetzt wird, selbst berechnen
+# (folgt Umbrels Standard-Konvention: ${UMBREL_ROOT}/app-data/${APP_ID})
+: "${APP_DATA_DIR:=${SCRIPT_UMBREL_ROOT}/app-data/private-store-autocurtain}"
 
 MQTT_PASSWORD_FILE="${APP_DATA_DIR}/data/mqtt_password"
 

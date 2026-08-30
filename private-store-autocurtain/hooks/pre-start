@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+: "${APP_DATA_DIR:=${SCRIPT_UMBREL_ROOT}/app-data/private-store-autocurtain}"
+
 SECRETS_DIR="${APP_DATA_DIR}/data/mosquitto/secrets"
 PASSWD_FILE="${SECRETS_DIR}/passwd"
 MQTT_PASSWORD_FILE="${APP_DATA_DIR}/data/mqtt_password"
