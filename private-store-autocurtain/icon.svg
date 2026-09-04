@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Hintergrund -->
+  <rect width="512" height="512" rx="112" fill="#2B2A28"/>
+
+  <!-- Sonne/Orb -->
+  <circle cx="256" cy="180" r="72" fill="#E8A659"/>
+
+  <!-- Vorhang links -->
+  <rect x="60" y="80" width="170" height="360" rx="16" fill="#2F8983"/>
+
+  <!-- Vorhang rechts (offen – schmaler) -->
+  <rect x="282" y="80" width="170" height="360" rx="16" fill="#66C9C1"/>
+
+  <!-- Lichtspalt zwischen den Vorhängen -->
+  <rect x="218" y="80" width="76" height="360" fill="#E8A659" opacity="0.18"/>
+</svg>
