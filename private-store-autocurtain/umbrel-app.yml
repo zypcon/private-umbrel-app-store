@@ -14,8 +14,9 @@ dependencies: []
 repo: "https://github.com/zypcon/private-umbrel-app-store"
 support: "https://github.com/zypcon/auto-curtain/issues"
 port: 8000
+icon: https://raw.githubusercontent.com/zypcon/private-umbrel-app-store/9db6d059628bda8f4a6aa5a7d8e9843dd374b916/private-store-autocurtain/icon.svg
 gallery:
-  - "1.jpg"
-  - "2.jpg"
+  - https://raw.githubusercontent.com/zypcon/private-umbrel-app-store/9db6d059628bda8f4a6aa5a7d8e9843dd374b916/private-store-autocurtain/1.jpg
+  - https://raw.githubusercontent.com/zypcon/private-umbrel-app-store/9db6d059628bda8f4a6aa5a7d8e9843dd374b916/private-store-autocurtain/2.jpg
 releaseNotes: >-
   Erste Version als native Umbrel-App (Migration von Portainer-DinD-Stack).
